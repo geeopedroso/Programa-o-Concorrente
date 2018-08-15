@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programaçãoconcorrente;
+package Exercicio1;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,28 +17,29 @@ import java.util.logging.Logger;
  *
  * @author a1294318
  */
-public class TreadsSubClasse extends Thread {
+public class ThreadDorme extends Thread {
+
     int id;
 
-    public TreadsSubClasse(int id) {
+    public ThreadDorme(int id) {
         this.id = id;
     }
-    
-           
+
     @Override
     public void run() {
-        System.out.println("thread "+ this.id + " disse:  Olar");
-       int n = (int) (Math.random() * (10000 - 5000) + 5000);
+        Dormir();
+    }
+
+    public void Dormir() {
+        System.out.println("thread " + this.id + " disse:  Olar");
+        int n = (int) (Math.random() * (10000 - 5000) + 5000);
         try {
             Thread.sleep(n);
         } catch (InterruptedException ex) {
-            Logger.getLogger(TreadsSubClasse.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ThreadDorme.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println(this.id + "disse:  vorti");
-        
-        
     }
-    
-    
-    
+
+   
 }
