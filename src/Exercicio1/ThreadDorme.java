@@ -34,9 +34,10 @@ public class ThreadDorme extends Thread {
         System.out.println("thread " + this.id + " disse:  Olar");
         int n = (int) (Math.random() * (10000 - 5000) + 5000);
         try {
+            System.out.println(n);
             Thread.sleep(n);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ThreadDorme.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(InterruptedException e){
+            
         }
         System.out.println(this.id + "disse:  vorti");
     }

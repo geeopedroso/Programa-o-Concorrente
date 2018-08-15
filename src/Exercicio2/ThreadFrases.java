@@ -29,7 +29,11 @@ public class ThreadFrases extends Thread {
 
     @Override
     public void run() {
-
+        Frase();
+        
+    }
+    
+    public void Frase(){
         try {
             //OpenFile
             FileReader arquivo = new FileReader("arquivo.txt");
@@ -37,12 +41,15 @@ public class ThreadFrases extends Thread {
             String linha = conteudoDoArquivo.readLine();
             while (linha != null) {
                 System.out.println(linha);
-                Thread.sleep(10000);
+                Thread.sleep(1000);
 
                 linha = conteudoDoArquivo.readLine();
             }
             conteudoDoArquivo.close();
-        } catch (Exception e) {//Catch exception if any
+        }catch(InterruptedException e){
+            
+        } 
+        catch (Exception e) {//Catch exception if any
             System.err.println("Error: " + e.getMessage());
         }
     }
