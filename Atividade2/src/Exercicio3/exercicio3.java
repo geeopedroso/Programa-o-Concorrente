@@ -44,7 +44,7 @@ public class exercicio3 extends Thread {
     public void run() {
         
         for(int i = inicio; i<fim; i++){
-            if(isPrimo(i)){
+            if(isPrimo(vetor.get(i))){
                 saida.add(i);
             }
         }
@@ -55,25 +55,34 @@ public class exercicio3 extends Thread {
 }
 
 class Principal{
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         List<Integer> vetor = new ArrayList<>();
         List<Integer> saida = new ArrayList<>();
-                
-        for(int i=0; i<100; i++){
+        List<exercicio3> listaThreads = new ArrayList<>();
+        int tamanho = 100;
+        for(int i=0; i<tamanho; i++){
             vetor.add(i);
         }
+        
         int inicio = 0;
-        int tam = 100;
-        int fim = 100 /5;
+       
+        int fim = tamanho /5;
         for(int i = 0; i<5; i++){
             exercicio3 thread = new exercicio3(inicio, fim, vetor, saida);
-            inicio += fim;
-            fim += fim;
+            inicio += tamanho/5;
+            fim += tamanho/5;
+            thread.start();
+            listaThreads.add(thread);
+            
                     
         }
-        System.out.println("rola");
-        for(Integer i: saida){
-            System.out.println(i.toString()s);
+        
+        for(exercicio3 e: listaThreads){
+            e.join();
+        }
+        saida.sort((o1, o2) -> o2.compareTo(o1));
+        for(int i=0; i< saida.size(); i++){
+            System.out.println(saida.get(i));
         }
         
     }
